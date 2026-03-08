@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix
 
 
 # Load dataset
@@ -49,6 +50,12 @@ for name, model in models.items():
     accuracy = accuracy_score(y_test, predictions)
 
     print(name, "Accuracy:", round(accuracy, 4))
+
+    print("\nConfusion Matrix:")
+    print(confusion_matrix(y_test, predictions))
+
+    print("\nClassification Report:")
+    print(classification_report(y_test, predictions))
 
     if accuracy > best_accuracy:
 
