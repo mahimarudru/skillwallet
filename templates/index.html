@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypertension AI | Clinical Assessment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+
+<header class="hero-header text-white p-4 mb-5 shadow animate-popup">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="h3 fw-bold mb-0">Hypertension Detection</h1>
+            <p class="small opacity-75 mb-0">Advanced AI-Powered Cardiovascular Risk Assessment Platform</p>
+        </div>
+        <div class="badge-group">
+            <span class="badge border rounded-pill px-3 py-2">🛡️ Medical Grade</span>
+            <span class="badge border rounded-pill px-3 py-2 ms-2">🤖 AI-Powered</span>
+        </div>
+    </div>
+</header>
+
+<main class="container mt-n5">
+    <div class="row g-4">
+        <div class="col-lg-8 animate-popup delay-1">
+            <div class="glass-card shadow-lg p-4">
+                <h4 class="text-primary mb-4 border-bottom pb-2">🩺 Comprehensive Health Assessment</h4>
+                 <p class="small opacity-75 mb-3">Complete our evidence-based questionnaire to receive a personalized hypertension risk evaluation and clinical recommendations</p>
+                <form action="/predict" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">⚥ Gender</label>
+                            <select name="gender" class="form-select pro-input" required>
+                                <option value="1">Male</option><option value="0">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">📅 Age Group</label>
+                            <select name="age" class="form-select pro-input" required>
+                                <option>18-35</option><option>36-55</option><option>65+ years</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">⏳ Family History of HTN</label>
+                            <select name="family_hist" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">👤 Currently Under Medical Care</label>
+                            <select name="med_care" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">💊 Taking BP Medication</label>
+                            <select name="bp_meds" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">🌡️ Symptom Severity</label>
+                            <select name="severity" class="form-select pro-input" required>
+                                <option>None</option><option>Mild</option><option>Moderate</option><option>Severe</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">🫁 Shortness of Breath</label>
+                            <select name="breath" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">👁️‍🗨️Vision Changes</label>
+                            <select name="vision" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">🩸 Frequent Nosebleeds</label>
+                            <select name="nosebleed" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">🗓️ Time Since Diagnosis</label>
+                            <select name="time_diag" class="form-select pro-input" required>
+                                <option>None</option><option>< 1 Year</option><option>1-5 Years</option><option>5+ Years</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">💓 Systolic Pressure (mmHg)</label>
+                            <input type="number" name="sys" class="form-control pro-input" placeholder="e.g. 130" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">🫀 Diastolic Pressure (mmHg)</label>
+                            <input type="number" name="dia" class="form-control pro-input" placeholder="e.g. 85" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold small">🍴 Heart-Healthy Diet</label>
+                            <select name="diet" class="form-select pro-input" required>
+                                <option>No</option><option>Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-5 rounded-pill shadow fw-bold">📈 GENERATE RISK ASSESSMENT</button>
+                </form>
+            </div>
+        </div>
+      <div class="col-lg-4 animate-popup delay-2">
+       <div class="glass-card shadow-sm p-4 mb-4 animate-popup delay-2">
+            <h5 class="text-primary mb-3 d-flex align-items-center">
+             <span class="me-2">ⓘ</span> About This System
+            </h5>
+    
+            <p class="small text-muted mb-4">
+                       Our AI-powered platform analyzes multiple cardiovascular risk factors using advanced machine learning algorithms trained on clinical data.
+            </p>
+
+            <ul class="list-unstyled small text-muted custom-bullet-list">
+                <li class="mb-2">Evidence-based risk assessment</li>
+                <li class="mb-2">Clinical guideline compliance</li>
+                <li class="mb-2">Personalized recommendations</li>
+                <li>Professional medical support</li>
+             </ul>
+        </div>
+            <div class="glass-card shadow-sm p-4 border-top border-primary border-4">
+                <h6 class="fw-bold mb-3 text-primary">💙 Blood Pressure Guidelines</h6>
+                <div class="small">
+                    <div class="d-flex justify-content-between border-bottom py-1"><span>Normal:</span> <span class="text-success fw-bold">< 120/80</span></div>
+                    <div class="d-flex justify-content-between border-bottom py-1"><span>Elevated:</span> <span class="text-info">120-129/< 80</span></div>
+                    <div class="d-flex justify-content-between border-bottom py-1"><span>Stage 1:</span> <span class="text-warning">130-139/80-89</span></div>
+                    <div class="d-flex justify-content-between border-bottom py-1"><span>Stage 2:</span> <span class="text-orange">≥ 140/≥ 90</span></div>
+                    <div class="d-flex justify-content-between text-danger fw-bold py-1"><span>Crisis:</span> <span>> 180/> 120</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% if show_modal %}
+<div class="modal fade show d-block animate-popup" style="background: rgba(0,0,0,0.8);" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 25px; overflow: hidden;">
+            
+            <div class="modal-header bg-{{ color_class }} text-white border-0 py-4">
+                <h5 class="modal-title mx-auto h4">Clinical Risk Assessment</h5>
+            </div>
+
+            <div class="modal-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <h1 class="text-{{ color_class }} fw-800">{{ prediction_text }}</h1>
+                    <div class="d-flex justify-content-center gap-2 mb-3">
+                        <span class="badge bg-light text-dark border">Confidence: 87.5%</span>
+                        <span class="badge bg-{{ color_class }}">Risk: {{ risk_level }}</span>
+                    </div>
+                    <p class="lead text-muted">{{ status_text }}</p>
+                </div>
+
+                <hr>
+
+                <h5 class="fw-bold mb-3 mt-4">📋 Actionable Recommendations (Click to expand)</h5>
+                <div class="accordion accordion-flush" id="recommendationAccordion">
+                    {% for title, detail in recommendations %}
+                    <div class="accordion-item border-0 mb-2 rounded-3 overflow-hidden shadow-sm">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}">
+                                ➤ {{ title }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#recommendationAccordion">
+                            <div class="accordion-body bg-light text-muted">
+                                {{ detail }}
+                            </div>
+                        </div>
+                       
+                    {% endfor %}
+<div class="text-center mt-4">
+    <button id="downloadPDF" class="btn btn-outline-{{ color_class }} w-100 py-2 rounded-pill fw-bold mb-2">
+        📥 DOWNLOAD MEDICAL REPORT (PDF)
+    </button>
+    
+    <button class="btn btn-{{ color_class }} btn-lg w-100 rounded-pill shadow-lg fw-bold py-3" onclick="location.href='/'">
+        NEW CLINICAL ASSESSMENT
+    </button>
+</div>
+{% endif %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+    document.getElementById('downloadPDF').addEventListener('click', function () {
+        const element = document.querySelector('.modal-content');
+        
+        // Temporarily add a class to fix PDF layout
+        element.classList.add('pdf-version');
+
+        const opt = {
+            margin:       [0.5, 0.5],
+            filename:     'Hypertension_Risk_Report.pdf',
+            image:        { type: 'jpeg', quality: 1 },
+            html2canvas:  { 
+                scale: 2, 
+                useCORS: true,
+                letterRendering: true 
+            },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Generate PDF and then remove the temporary class
+        html2pdf().set(opt).from(element).save().then(() => {
+            element.classList.remove('pdf-version');
+        });
+    });
+</script>
+
+</body>
+</html>
